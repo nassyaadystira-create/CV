@@ -1,0 +1,1879 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/jpeg" href="nassya.jpeg" />
+
+  <!-- SEO -->
+  <title>Nassya Adystira | Portfolio</title>
+  <meta name="description"
+    content="Website portofolio resmi Nassya Adystira, mahasiswa D-IV Teknik Elektronika Telekomunikasi di Politeknik Caltex Riau. Penerima Beasiswa Tahfidz Pemerintah Provinsi Riau." />
+  <meta name="keywords"
+    content="Nassya Adystira, Portfolio, Teknik Elektronika, Telekomunikasi, Politeknik Caltex Riau, IoT, Robotics" />
+  <meta name="author" content="Nassya Adystira" />
+  <meta name="theme-color" content="#050510" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Nassya Adystira | Portfolio" />
+  <meta property="og:description"
+    content="Portofolio resmi Nassya Adystira – Electronics & Telecommunications Engineering Student." />
+  <meta property="og:image" content="nassya.jpeg" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="style.css?v=21" />
+  </head>
+
+<body>
+  <!-- ===== PRELOADER ===== -->
+  <div id="preloader" style="position:fixed;inset:0;background:#000002;z-index:999999;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden;transition:opacity 0.8s ease-out;">
+    <canvas id="lightningCanvas" style="position:absolute;inset:0;pointer-events:none;z-index:10;"></canvas>
+    
+    <div style="position:relative;z-index:2;text-align:center;pointer-events:none;">
+      <h1 style="color:transparent;background-image:radial-gradient(circle, #e2e8f0 35%, transparent 35%);background-size:6px 6px;-webkit-background-clip:text;font-size:clamp(2rem, 5vw, 4rem);filter:drop-shadow(0 0 5px rgba(255,255,255,0.8));margin:0;letter-spacing:3px;font-family:'Space Grotesk',sans-serif;text-transform:uppercase;">Welcome To My</h1>
+      <h1 style="color:#3b82f6;font-size:clamp(2.5rem, 6vw, 5rem);text-shadow:0 0 15px rgba(79,70,229,0.8), 0 0 30px rgba(79,70,229,0.5);color:#818cf8;margin:10px 0 0 0;letter-spacing:3px;font-family:'Space Grotesk',sans-serif;text-transform:uppercase;">Portfolio Website</h1>
+      
+      <div style="margin-top:50px;display:flex;align-items:center;justify-content:center;gap:20px;font-family:'Space Grotesk',sans-serif;color:white;font-size:1.2rem;font-weight:bold;letter-spacing:2px;">
+        <span>Loading</span>
+        <div style="width:250px;height:4px;background:rgba(255,255,255,0.2);position:relative;border-radius:2px;overflow:hidden;">
+          <div id="loadingBar" style="width:0%;height:100%;background:#3b82f6;box-shadow:0 0 10px #3b82f6;transition:width 0.2s ease;"></div>
+        </div>
+        <span id="loadingPercent" style="width:50px;text-align:left;">0%</span>
+      </div>
+    </div>
+  </div>
+  
+  
+
+  <!-- Starfield Canvas -->
+  <canvas id="starfield"></canvas>
+
+  <!-- Shooting Stars -->
+  <div class="shooting-stars">
+    <div class="shooting-star"></div>
+    <div class="shooting-star"></div>
+    <div class="shooting-star"></div>
+  </div>
+
+  <!-- Cyber Warp Portal Transition Overlay -->
+  <div class="warp-portal-fx" id="warpPortal" aria-hidden="true">
+    <div class="warp-ring"></div>
+    <div class="warp-ring"></div>
+    <div class="warp-ring"></div>
+    <div class="warp-flash"></div>
+    <div class="warp-grid"></div>
+  </div>
+
+  <!-- HUD Orbit Telemetry Rail (Right Edge) -->
+  <nav class="hud-nav-rail" id="hudNavRail" aria-label="HUD Section Orbit">
+    <div class="hud-rail-track">
+      <div class="hud-rail-fill" id="hudRailFill"></div>
+    </div>
+    <button class="hud-node active" data-target="#home" aria-label="Section Home">
+      <span class="hud-tooltip">// 01 HOME</span>
+    </button>
+    <button class="hud-node" data-target="#about" aria-label="Section About">
+      <span class="hud-tooltip">// 02 ABOUT</span>
+    </button>
+    <button class="hud-node" data-target="#portfolio" aria-label="Section Portfolio">
+      <span class="hud-tooltip">// 03 PORTFOLIO</span>
+    </button>
+    <button class="hud-node" data-target="#moments" aria-label="Section Moments">
+      <span class="hud-tooltip">// 04 MOMENTS</span>
+    </button>
+    <button class="hud-node" data-target="#contact" aria-label="Section Contact">
+      <span class="hud-tooltip">// 05 CONTACT</span>
+    </button>
+  </nav>
+
+  <!-- Scroll Progress Bar -->
+  <div class="scroll-progress" id="scrollProgress"></div>
+
+  <!-- Floating Glassmorphism Navbar -->
+  <nav class="floating-nav" id="navbar">
+    <div class="nav-avatar-badge">
+      <img src="nassya.jpeg" alt="Nassya" class="nav-avatar-img"
+        onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
+      <span class="nav-avatar-fallback">NA</span>
+    </div>
+        <div class="nav-pill">
+      <a href="#home" class="nav-link active" data-section="home">Home</a>
+      <a href="#about" class="nav-link" data-section="about">About</a>
+      <a href="#portfolio" class="nav-link" data-section="portfolio">Portfolio</a>
+      <a href="#contact" class="nav-link" data-section="contact">Contact</a>
+      <button id="cmdBtn" class="nav-cmd-btn" title="Quick Search (Ctrl + K)" aria-label="Search">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        <span class="cmd-shortcut">⌘K</span>
+      </button>
+      <div class="nav-extra-controls">
+        <button id="soundToggle" class="sound-toggle" title="Toggle Tech Audio Effects" aria-label="Toggle Audio">
+          <svg class="sound-off-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><line x1="23" y1="9" x2="17" y2="15"></line><line x1="17" y1="9" x2="23" y2="15"></line></svg>
+          <svg class="sound-on-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" style="display:none;"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
+        </button>
+        <button id="themeToggle" class="theme-toggle" aria-label="Toggle Theme">
+          <svg class="sun-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+          <svg class="moon-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+        </button>
+      </div>
+    </div>
+    <button class="nav-menu-btn" id="menuBtn" aria-label="Toggle Menu">☰</button>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#home" class="mobile-link">Home</a>
+    <a href="#about" class="mobile-link">About</a>
+    <a href="#portfolio" class="mobile-link">Portfolio</a>
+    <a href="#contact" class="mobile-link">Contact</a>
+  </div>
+
+  <!-- ===== HERO / HOME SECTION ===== -->
+  <section class="hero" id="home">
+  <!-- Subtle Spiderman Web Background -->
+  <div style="position: absolute; top: -50px; right: -50px; opacity: 0.05; pointer-events: none; z-index: 0;">
+    <svg width="400" height="400" viewBox="0 0 100 100">
+      <path d="M50,50 L50,0 M50,50 L100,20 M50,50 L100,80 M50,50 L50,100 M50,50 L0,80 M50,50 L0,20" stroke="#ef4444" stroke-width="0.5" fill="none"/>
+      <circle cx="50" cy="50" r="10" stroke="#ef4444" stroke-width="0.5" fill="none"/>
+      <circle cx="50" cy="50" r="25" stroke="#ef4444" stroke-width="0.5" fill="none"/>
+      <circle cx="50" cy="50" r="40" stroke="#ef4444" stroke-width="0.5" fill="none"/>
+    </svg>
+  </div>
+
+    <div class="hero-layout">
+      <!-- Left: Text -->
+      <div class="hero-text-side">
+        <h1 class="hero-headline">
+          <span class="hero-spidey-italic">Engineering</span><br />
+          <span class="hero-white-bold">Connected Futures</span>
+        </h1>
+        <div class="typing-container">
+          <span class="typing-text" id="typingText"></span>
+          <span class="typing-cursor">|</span>
+        </div>
+        <p class="hero-description">
+          I'm an Electronics & Telecommunications Engineering student driven by a passion for IoT, programming, and networking. I love transforming complex technical challenges into efficient, impactful solutions.
+        </p>
+        <div class="hero-actions">
+          <a href="CV_Nassya_Adystira.pdf" download class="btn-primary">
+            <span class="btn-icon">📄</span> Download CV
+          </a>
+          <a href="#contact" class="btn-outline-hero">
+            <span class="btn-icon">✉️</span> Let's Talk
+          </a>
+        </div>
+        <div class="hero-social-links">
+          <a href="https://www.linkedin.com/in/nassya-adystira-09b844319/" target="_blank" rel="noopener noreferrer"
+            class="social-icon-link" aria-label="LinkedIn">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+            </svg>
+          </a>
+          <a href="https://www.instagram.com/nassyaadystira" target="_blank" rel="noopener noreferrer"
+            class="social-icon-link" aria-label="Instagram">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" />
+            </svg>
+          </a>
+          <a href="mailto:nassyaadystira@gmail.com" class="social-icon-link" aria-label="Email">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
+            </svg>
+          </a>
+          <a href="https://wa.me/6281364822210" target="_blank" rel="noopener noreferrer" class="social-icon-link"
+            aria-label="WhatsApp">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Right: Status Card -->
+      <div class="hero-status-card glass-card animated-glow-card">
+        <div class="status-header">
+          <div class="status-live-badge">
+            <span class="status-dot"></span>
+            <span class="status-text">Available for Projects & Research</span>
+          </div>
+          <div class="status-live-clock" title="Waktu Lokal Pekanbaru, Riau (WIB)">
+            <span class="clock-icon">🕒</span>
+            <span id="liveClockDisplay">--:--:-- WIB</span>
+          </div>
+        </div>
+        <div class="status-profile">
+          <div class="status-avatar-wrap">
+            <img src="profile.png" alt="Nassya Adystira" class="status-avatar" />
+          </div>
+          <div class="status-info">
+            <h3>Nassya Adystira</h3>
+            <p>Electronics & Telecom Engineering</p>
+            <p class="status-campus">Politeknik Caltex Riau</p>
+          </div>
+        </div>
+        <div class="status-stats">
+          <div class="mini-stat">
+            <span class="mini-stat-number" data-count="3.94">0</span>
+            <span class="mini-stat-label">GPA / 4.00</span>
+          </div>
+          <div class="mini-stat">
+            <span class="mini-stat-number" data-count="11" data-suffix="+">0</span>
+            <span class="mini-stat-label">Awards</span>
+          </div>
+          <div class="mini-stat">
+            <span class="mini-stat-number" data-count="12" data-suffix="+">0</span>
+            <span class="mini-stat-label">Projects</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Floating Stats Row -->
+    <div class="hero-metrics">
+      <div class="metric-card glass-card animate-on-scroll">
+        <div class="metric-icon">🎓</div>
+        <div class="metric-info">
+          <span class="metric-number" data-count="12" data-suffix="+">0</span>
+          <span class="metric-label">Projects Built</span>
+        </div>
+      </div>
+      <div class="metric-card glass-card animate-on-scroll">
+        <div class="metric-icon">🏆</div>
+        <div class="metric-info">
+          <span class="metric-number" data-count="11" data-suffix="+">0</span>
+          <span class="metric-label">Awards & Honors</span>
+        </div>
+      </div>
+      <div class="metric-card glass-card animate-on-scroll">
+        <div class="metric-icon">📜</div>
+        <div class="metric-info">
+          <span class="metric-number" data-count="2">0</span>
+          <span class="metric-label">Certifications</span>
+        </div>
+      </div>
+      <div class="metric-card glass-card animate-on-scroll">
+        <div class="metric-icon">🏛️</div>
+        <div class="metric-info">
+          <span class="metric-number" data-count="3">0</span>
+          <span class="metric-label">Organizations</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Cyber Section Divider: Home to About -->
+  <div class="cyber-section-divider" aria-hidden="true">
+    <div class="divider-track track-left"><span class="divider-beam"></span></div>
+    <div class="divider-core"><span class="core-pulse"></span><span class="core-diamond"></span></div>
+    <div class="divider-track track-right"><span class="divider-beam"></span></div>
+  </div>
+
+  <!-- ===== ABOUT SECTION ===== -->
+  <section class="section section-converge" id="about">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge">Who I Am</span>
+        <h2 class="section-title">Hi, I'm <span class="gradient-text">Nassya Adystira</span></h2>
+      </div>
+
+      <div class="about-layout">
+        <!-- Left: Photo -->
+        <div class="about-photo-side animate-on-scroll converge-left">
+          <div class="about-photo-frame">
+            <img src="nas.jpeg" alt="Nassya Adystira" class="about-photo" />
+          </div>
+          <div class="about-actions">
+          </div>
+        </div>
+
+        <!-- Right: Bio Text -->
+        <div class="about-bio-side animate-on-scroll converge-right">
+          <p class="about-bio-text">
+            I am a final-year student pursuing a Bachelor's degree in <strong>Electronics & Telecommunications Engineering</strong> at <strong>Politeknik Caltex Riau</strong>. My academic journey is deeply rooted in my fascination with how technology connects the world.
+          </p>
+          <p class="about-bio-text">
+            As a proud recipient of the Riau Provincial Government's <strong>Tahfidz Full Scholarship</strong>, I continuously strive for excellence. I have developed a strong foundation and practical expertise in <strong>Internet of Things (IoT), robotics, telecommunication networks, and embedded systems</strong>. Building real-world projects that solve actual problems is what excites me the most.
+          </p>
+          <p class="about-bio-text">
+            Beyond technical skills, I am equipped with strong <strong>leadership, public speaking, and problem-solving abilities</strong>. I actively participate in campus organizations and international competitions, believing that collaboration and continuous learning are the keys to innovation.
+          </p>
+
+          <div class="about-info-grid">
+            <div class="info-chip">
+              <span class="info-chip-icon">📍</span>
+              <div>
+                <span class="info-chip-label">Location</span>
+                <span class="info-chip-value">Riau, Indonesia</span>
+              </div>
+            </div>
+            <div class="info-chip">
+              <span class="info-chip-icon">🎓</span>
+              <div>
+                <span class="info-chip-label">Status</span>
+                <span class="info-chip-value">4th Year Student</span>
+              </div>
+            </div>
+            <div class="info-chip">
+              <span class="info-chip-icon">📖</span>
+              <div>
+                <span class="info-chip-label">Scholarship</span>
+                <span class="info-chip-value">Tahfidz Full Scholarship</span>
+              </div>
+            </div>
+            <div class="info-chip">
+              <span class="info-chip-icon">💼</span>
+              <div>
+                <span class="info-chip-label">Intern</span>
+                <span class="info-chip-value">PT. Telkom Infrastruktur</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Experience & Education Sections -->
+      <div class="resume-layout">
+        
+        <!-- Experience -->
+        <div class="education-section">
+          <h3 class="subsection-title animate-on-scroll">💼 Practical Experience</h3>
+          <div class="timeline">
+            <div class="timeline-item animate-on-scroll">
+              <div class="timeline-dot"></div>
+              <div class="timeline-date">2026</div>
+              <div class="timeline-card glass-card">
+                <div class="timeline-header">
+                  <span class="timeline-icon">🏢</span>
+                  <div>
+                    <h4>PT. Telkom Infrastruktur Indonesia</h4>
+                    <p class="timeline-sub">Telecommunication Engineering Intern – Pekanbaru</p>
+                  </div>
+                </div>
+                <ul class="timeline-list">
+                  <li>Monitored ODP maintenance and network disturbance tickets.</li>
+                  <li>Assisted in FTTH (Fiber To The Home) infrastructure deployment using PROMAN application.</li>
+                  <li>Collaborated with senior engineers to troubleshoot network issues.</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="timeline-item animate-on-scroll">
+              <div class="timeline-dot"></div>
+              <div class="timeline-date">2018 – Present</div>
+              <div class="timeline-card glass-card">
+                <div class="timeline-header">
+                  <span class="timeline-icon">🕌</span>
+                  <div>
+                    <h4>Public Speaker</h4>
+                    <p class="timeline-sub">Various Youth Communities</p>
+                  </div>
+                </div>
+                <ul class="timeline-list">
+                  <li>Delivered speeches and presentations to youth communities during Ramadan and other events.</li>
+                  <li>Honed public speaking, confidence, and communication skills.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Education -->
+        <div class="education-section">
+          <h3 class="subsection-title animate-on-scroll">🎓 Education</h3>
+          <div class="timeline">
+            <div class="timeline-item animate-on-scroll">
+              <div class="timeline-dot"></div>
+              <div class="timeline-date">2023 – Present</div>
+              <div class="timeline-card glass-card">
+                <div class="timeline-header">
+                  <span class="timeline-icon">🎓</span>
+                  <div>
+                    <h4>Politeknik Caltex Riau</h4>
+                    <p class="timeline-sub">D-IV Electronics Telecommunication Engineering</p>
+                  </div>
+                </div>
+                <ul class="timeline-list">
+                  <li>Current GPA: <strong>3.94 / 4.00</strong></li>
+                  <li>Awardee of the prestigious Tahfidz Full Scholarship from Riau Provincial Government.</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="timeline-item animate-on-scroll">
+              <div class="timeline-dot"></div>
+              <div class="timeline-date">2020 – 2023</div>
+              <div class="timeline-card glass-card">
+                <div class="timeline-header">
+                  <span class="timeline-icon">🏫</span>
+                  <div>
+                    <h4>SMA IT Insan Cendekia Boarding School</h4>
+                    <p class="timeline-sub">Science Major – Payakumbuh</p>
+                  </div>
+                </div>
+                <ul class="timeline-list">
+                  <li>Enrolled in the intensive Tahfidz Al-Qur'an program.</li>
+                  <li>Built discipline, perseverance, and strong time-management skills.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  
+    <!-- Marquee -->
+    <div class="marquee-container">
+      <div class="marquee-content">
+        <!-- Original set -->
+        <span><svg viewBox="0 0 24 24" fill="currentColor" style="width:20px;height:20px;color:#3b82f6;margin-right:8px;vertical-align:middle;filter:drop-shadow(0 0 5px #3b82f6);"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"></path></svg> C++</span>
+        <span><svg viewBox="0 0 24 24" fill="currentColor" style="width:20px;height:20px;color:#3b82f6;margin-right:8px;vertical-align:middle;filter:drop-shadow(0 0 5px #3b82f6);"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"></path></svg> Python</span>
+        <span><svg viewBox="0 0 24 24" fill="currentColor" style="width:20px;height:20px;color:#3b82f6;margin-right:8px;vertical-align:middle;filter:drop-shadow(0 0 5px #3b82f6);"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"></path></svg> MATLAB</span>
+        <span><svg viewBox="0 0 24 24" fill="currentColor" style="width:20px;height:20px;color:#3b82f6;margin-right:8px;vertical-align:middle;filter:drop-shadow(0 0 5px #3b82f6);"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"></path></svg> Arduino IDE</span>
+        <span><svg viewBox="0 0 24 24" fill="currentColor" style="width:20px;height:20px;color:#3b82f6;margin-right:8px;vertical-align:middle;filter:drop-shadow(0 0 5px #3b82f6);"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"></path></svg> Proteus</span>
+        <span><svg viewBox="0 0 24 24" fill="currentColor" style="width:20px;height:20px;color:#3b82f6;margin-right:8px;vertical-align:middle;filter:drop-shadow(0 0 5px #3b82f6);"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"></path></svg> IoT Development</span>
+        <span><svg viewBox="0 0 24 24" fill="currentColor" style="width:20px;height:20px;color:#3b82f6;margin-right:8px;vertical-align:middle;filter:drop-shadow(0 0 5px #3b82f6);"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"></path></svg> Embedded Systems</span>
+        <span><svg viewBox="0 0 24 24" fill="currentColor" style="width:20px;height:20px;color:#3b82f6;margin-right:8px;vertical-align:middle;filter:drop-shadow(0 0 5px #3b82f6);"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"></path></svg> Machine Learning</span>
+        <span><svg viewBox="0 0 24 24" fill="currentColor" style="width:20px;height:20px;color:#3b82f6;margin-right:8px;vertical-align:middle;filter:drop-shadow(0 0 5px #3b82f6);"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"></path></svg> YOLO</span>
+        <!-- Duplicated set for seamless infinite loop -->
+        <span><svg viewBox="0 0 24 24" fill="currentColor" style="width:20px;height:20px;color:#3b82f6;margin-right:8px;vertical-align:middle;filter:drop-shadow(0 0 5px #3b82f6);"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"></path></svg> C++</span>
+        <span><svg viewBox="0 0 24 24" fill="currentColor" style="width:20px;height:20px;color:#3b82f6;margin-right:8px;vertical-align:middle;filter:drop-shadow(0 0 5px #3b82f6);"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"></path></svg> Python</span>
+        <span><svg viewBox="0 0 24 24" fill="currentColor" style="width:20px;height:20px;color:#3b82f6;margin-right:8px;vertical-align:middle;filter:drop-shadow(0 0 5px #3b82f6);"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"></path></svg> MATLAB</span>
+        <span><svg viewBox="0 0 24 24" fill="currentColor" style="width:20px;height:20px;color:#3b82f6;margin-right:8px;vertical-align:middle;filter:drop-shadow(0 0 5px #3b82f6);"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"></path></svg> Arduino IDE</span>
+        <span><svg viewBox="0 0 24 24" fill="currentColor" style="width:20px;height:20px;color:#3b82f6;margin-right:8px;vertical-align:middle;filter:drop-shadow(0 0 5px #3b82f6);"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"></path></svg> Proteus</span>
+        <span><svg viewBox="0 0 24 24" fill="currentColor" style="width:20px;height:20px;color:#3b82f6;margin-right:8px;vertical-align:middle;filter:drop-shadow(0 0 5px #3b82f6);"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"></path></svg> IoT Development</span>
+        <span><svg viewBox="0 0 24 24" fill="currentColor" style="width:20px;height:20px;color:#3b82f6;margin-right:8px;vertical-align:middle;filter:drop-shadow(0 0 5px #3b82f6);"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"></path></svg> Embedded Systems</span>
+        <span><svg viewBox="0 0 24 24" fill="currentColor" style="width:20px;height:20px;color:#3b82f6;margin-right:8px;vertical-align:middle;filter:drop-shadow(0 0 5px #3b82f6);"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"></path></svg> Machine Learning</span>
+        <span><svg viewBox="0 0 24 24" fill="currentColor" style="width:20px;height:20px;color:#3b82f6;margin-right:8px;vertical-align:middle;filter:drop-shadow(0 0 5px #3b82f6);"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"></path></svg> YOLO</span>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- Cyber Section Divider: About to Portfolio -->
+  <div class="cyber-section-divider" aria-hidden="true">
+    <div class="divider-track track-left"><span class="divider-beam"></span></div>
+    <div class="divider-core"><span class="core-pulse"></span><span class="core-diamond"></span></div>
+    <div class="divider-track track-right"><span class="divider-beam"></span></div>
+  </div>
+
+  <!-- ===== PORTFOLIO SECTION ===== -->
+  <section class="section section-alt section-converge" id="portfolio">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge">What I Built</span>
+        <h2 class="section-title">Portfolio</h2>
+      </div>
+
+      <!-- Portfolio Tabs -->
+      <div class="portfolio-tabs" id="portfolioTabs">
+        <button class="ptab active" data-tab="projects">
+          <span class="ptab-icon">&lt;&gt;</span>
+          <span>Projects</span>
+        </button>
+        <button class="ptab" data-tab="gallery">
+          <span class="ptab-icon">📸</span>
+          <span>Gallery</span>
+        </button>
+        <button class="ptab" data-tab="skills">
+          <span class="ptab-icon">⚙️</span>
+          <span>Tech Stack</span>
+        </button>
+        <button class="ptab" data-tab="achievements">
+          <span class="ptab-icon">🏆</span>
+          <span>Awards</span>
+        </button>
+        <button class="ptab" data-tab="organizations">
+          <span class="ptab-icon">🏛️</span>
+          <span>Organizations</span>
+        </button>
+      </div>
+
+      <!-- TAB: Projects -->
+      <div class="tab-content active" id="tab-projects">
+                <!-- Projects Filter & Search Controls -->
+        <div class="projects-controls animate-on-scroll">
+          <div class="projects-filter" id="projectsFilter">
+            <button class="project-filter-btn active" data-filter="all">
+              <span>🚀</span> Semua <span class="filter-count">11</span>
+            </button>
+            <button class="project-filter-btn" data-filter="iot">
+              <span>🤖</span> IoT & Hardware <span class="filter-count">4</span>
+            </button>
+            <button class="project-filter-btn" data-filter="telecom">
+              <span>📡</span> Telekomunikasi & RF <span class="filter-count">3</span>
+            </button>
+            <button class="project-filter-btn" data-filter="ai">
+              <span>💻</span> AI & Vision <span class="filter-count">2</span>
+            </button>
+            <button class="project-filter-btn" data-filter="sim">
+              <span>⚙️</span> Sistem & Data <span class="filter-count">3</span>
+            </button>
+          </div>
+          <div class="project-search-box">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            <input type="text" id="projectSearchInput" placeholder="Cari proyek (IoT, Antenna, YOLO, Python...)" autocomplete="off" />
+            <button id="projectSearchClear" class="search-clear-btn" style="display:none;" aria-label="Clear Search">&times;</button>
+          </div>
+        </div>
+
+        <div class="projects-grid compact-grid">
+          <!-- Project 1 -->
+          <div class="project-card compact-card animate-slide-up" data-title="Real-Time Friday Prayer Congregation Counter" data-category="ai,iot" data-year="2026 – Ongoing" data-role="Lead Developer" data-icon="📷" data-tags="Python,YOLOv8,Computer Vision,Webcam" data-desc="A real-time system to count Friday prayer attendees utilizing a webcam feed and the YOLOv8 object detection algorithm for accurate crowd analysis." data-features="Developed real-time video processing pipeline|Integrated YOLOv8 for accurate human detection|Designed for deployment in mosque environments">
+            <div class="compact-card-icon">📷</div>
+            <div class="compact-card-info">
+              <h3>Real-Time Friday Prayer Counter</h3>
+              <p>YOLOv8 based crowd analysis system.</p>
+              <button class="btn-view-details">View Details</button>
+            </div>
+          </div>
+
+          <!-- Project 2 -->
+          <div class="project-card compact-card animate-slide-up" data-title="WASMAN Attendance System" data-category="sim" data-year="2026" data-role="Data Automation" data-icon="📊" data-tags="Spreadsheet,Automation,Data Management" data-desc="A spreadsheet-based attendance management system with automated formulas and filters to process monthly records and generate squad-based reports efficiently." data-features="Automated monthly attendance calculation|Squad-based filtering and reporting|Eliminated manual data entry errors">
+            <div class="compact-card-icon">📊</div>
+            <div class="compact-card-info">
+              <h3>WASMAN Attendance System</h3>
+              <p>Automated spreadsheet data management.</p>
+              <button class="btn-view-details">View Details</button>
+            </div>
+          </div>
+
+          <!-- Project 3 -->
+          <div class="project-card compact-card animate-slide-up" data-title="Bidirectional PCM Simulation" data-category="telecom,sim" data-year="2026" data-role="Simulation Engineer" data-icon="🔊" data-tags="MATLAB,Signal Processing,PCM" data-desc="A comprehensive bidirectional PCM communication simulation covering accurate signal transmission, encoding, and reception using MATLAB." data-features="Simulated end-to-end PCM communication|Implemented signal encoding and decoding|Visualized waveforms at each stage">
+            <div class="compact-card-icon">🔊</div>
+            <div class="compact-card-info">
+              <h3>Bidirectional PCM Simulation</h3>
+              <p>MATLAB-based communication simulation.</p>
+              <button class="btn-view-details">View Details</button>
+            </div>
+          </div>
+
+          <!-- Project 4 -->
+          <div class="project-card compact-card animate-slide-up" data-title="Microstrip Antenna Design" data-category="telecom" data-year="2025" data-role="RF Designer" data-icon="📡" data-tags="CST Studio Suite,RF,Antenna" data-desc="Simulated a 2.4 GHz microstrip antenna and thoroughly analyzed VSWR, return loss, and gain parameters for optimal RF applications." data-features="Designed for 2.4 GHz ISM band|Optimized dimensions for high gain|Analyzed VSWR and Return Loss">
+            <div class="compact-card-icon">📡</div>
+            <div class="compact-card-info">
+              <h3>Microstrip Antenna Design</h3>
+              <p>2.4 GHz antenna simulation in CST.</p>
+              <button class="btn-view-details">View Details</button>
+            </div>
+          </div>
+
+          <!-- Project 5 -->
+          <div class="project-card compact-card animate-slide-up" data-title="BTS Site Design & Bad Spot Analysis" data-category="telecom" data-year="2025" data-role="Field Analyst" data-icon="📶" data-tags="AutoCAD,CellMapper,G-NetTrack" data-desc="Conducted field measurements using G-NetTrack Lite and CellMapper to analyze weak signal areas and propose new BTS locations mapped in AutoCAD." data-features="Field data collection with G-NetTrack|Identified signal bad spots|Proposed new BTS topology in AutoCAD">
+            <div class="compact-card-icon">📶</div>
+            <div class="compact-card-info">
+              <h3>BTS Site Design Analysis</h3>
+              <p>Network optimization and mapping.</p>
+              <button class="btn-view-details">View Details</button>
+            </div>
+          </div>
+
+          <!-- Project 6 -->
+          <div class="project-card compact-card animate-slide-up" data-title="FTTH Network Simulation" data-category="telecom" data-year="2025" data-role="Network Modeler" data-icon="🌐" data-tags="OptiSystem,Fiber Optic,FTTH" data-desc="Modeled an end-to-end FTTH network architecture from Telkom Pekanbaru to a local residential area utilizing OptiSystem." data-features="Designed FTTH topology|Calculated optical power budget|Analyzed BER and Q-Factor">
+            <div class="compact-card-icon">🌐</div>
+            <div class="compact-card-info">
+              <h3>FTTH Network Simulation</h3>
+              <p>Fiber optic network modeling in OptiSystem.</p>
+              <button class="btn-view-details">View Details</button>
+            </div>
+          </div>
+
+          <!-- Project 7 -->
+          <div class="project-card compact-card animate-slide-up" data-title="IoT-Based Automatic Clothesline System" data-category="iot" data-year="2024" data-role="Hardware Developer" data-icon="🌦️" data-tags="ESP32,IoT,Sensors" data-desc="Designed an IoT clothes-drying system using rain, temperature, and LDR sensors with real-time web monitoring via ESP32." data-features="Integrated multiple environmental sensors|Automated motorized clothesline retraction|Real-time data visualization via web dashboard">
+            <div class="compact-card-icon">🌦️</div>
+            <div class="compact-card-info">
+              <h3>IoT Automatic Clothesline</h3>
+              <p>Sensor-driven automated retraction system.</p>
+              <button class="btn-view-details">View Details</button>
+            </div>
+          </div>
+
+          <!-- Project 8 -->
+          <div class="project-card compact-card animate-slide-up" data-title="Line Follower Robot" data-category="iot" data-year="2024" data-role="Robotics Builder" data-icon="🤖" data-tags="Robotics,Infrared,Microcontroller" data-desc="Designed an autonomous robot using infrared sensors and microcontroller-based motion control." data-features="PID control for smooth line tracking|Custom PCB design|Fast response IR sensor array">
+            <div class="compact-card-icon">🤖</div>
+            <div class="compact-card-info">
+              <h3>Line Follower Robot</h3>
+              <p>Autonomous IR-guided robotics.</p>
+              <button class="btn-view-details">View Details</button>
+            </div>
+          </div>
+
+          <!-- Project 9 -->
+          <div class="project-card compact-card animate-slide-up" data-title="Image Denoising GUI" data-category="ai,sim" data-year="2024" data-role="Developer" data-icon="🖼️" data-tags="MATLAB,GUI,Image Processing" data-desc="Developed an interactive GUI for image noise reduction using spatial filtering techniques in MATLAB." data-features="Implemented various spatial filters|Interactive parameter tuning|Real-time before/after comparison">
+            <div class="compact-card-icon">🖼️</div>
+            <div class="compact-card-info">
+              <h3>Image Denoising GUI</h3>
+              <p>MATLAB-based spatial filtering tool.</p>
+              <button class="btn-view-details">View Details</button>
+            </div>
+          </div>
+
+          <!-- Project 10 -->
+          <div class="project-card compact-card animate-slide-up" data-title="Smartphone-Controlled RC Car" data-category="iot" data-year="2024" data-role="Hardware Developer" data-icon="🚗" data-tags="IoT,Bluetooth,Embedded Systems" data-desc="Built a mini car controlled through a smartphone app using Bluetooth wireless communication." data-features="Bluetooth serial communication|Custom Android control interface|Motor driver integration">
+            <div class="compact-card-icon">🚗</div>
+            <div class="compact-card-info">
+              <h3>Bluetooth RC Car</h3>
+              <p>Smartphone-controlled mini vehicle.</p>
+              <button class="btn-view-details">View Details</button>
+            </div>
+          </div>
+
+          <!-- Project 11 -->
+          <div class="project-card compact-card animate-slide-up" data-title="Bus Ticket Reservation App" data-category="sim" data-year="2024" data-role="Developer" data-icon="🎫" data-tags="Python,GUI,Application" data-desc="Created a GUI-based bus ticketing system with passenger data input and payment validation features." data-features="User-friendly desktop interface|Ticket booking and seat selection|Basic data persistence">
+            <div class="compact-card-icon">🎫</div>
+            <div class="compact-card-info">
+              <h3>Bus Ticketing App</h3>
+              <p>Python GUI desktop application.</p>
+              <button class="btn-view-details">View Details</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB: Gallery (Dokumentasi) -->
+      <div class="tab-content" id="tab-gallery">
+        <div class="gallery-grid">
+<div class="gallery-item animate-on-scroll">
+  <img src="WhatsApp Image 2026-10-08 at 11.04.40.jpeg" alt="Nassya Gallery" loading="lazy">
+  <div class="gallery-overlay">
+    <div class="gallery-info">
+      <h4>Dokumentasi</h4>
+    </div>
+  </div>
+</div>
+<div class="gallery-item animate-on-scroll">
+  <img src="WhatsApp Image 2026-10-08 at 11.04.43.jpeg" alt="Nassya Gallery" loading="lazy">
+  <div class="gallery-overlay">
+    <div class="gallery-info">
+      <h4>Dokumentasi</h4>
+    </div>
+  </div>
+</div>
+<div class="gallery-item animate-on-scroll">
+  <img src="WhatsApp Image 2026-10-08 at 11.04.46.jpeg" alt="Nassya Gallery" loading="lazy">
+  <div class="gallery-overlay">
+    <div class="gallery-info">
+      <h4>Dokumentasi</h4>
+    </div>
+  </div>
+</div>
+<div class="gallery-item animate-on-scroll">
+  <img src="WhatsApp Image 2026-10-08 at 11.04.47.jpeg" alt="Nassya Gallery" loading="lazy">
+  <div class="gallery-overlay">
+    <div class="gallery-info">
+      <h4>Dokumentasi</h4>
+    </div>
+  </div>
+</div>
+<div class="gallery-item animate-on-scroll">
+  <img src="WhatsApp Image 2026-10-08 at 11.04.52.jpeg" alt="Nassya Gallery" loading="lazy">
+  <div class="gallery-overlay">
+    <div class="gallery-info">
+      <h4>Dokumentasi</h4>
+    </div>
+  </div>
+</div>
+<div class="gallery-item animate-on-scroll">
+  <img src="WhatsApp Image 2026-10-08 at 11.04.53 (1).jpeg" alt="Nassya Gallery" loading="lazy">
+  <div class="gallery-overlay">
+    <div class="gallery-info">
+      <h4>Dokumentasi</h4>
+    </div>
+  </div>
+</div>
+<div class="gallery-item animate-on-scroll">
+  <img src="WhatsApp Image 2026-10-08 at 11.04.53.jpeg" alt="Nassya Gallery" loading="lazy">
+  <div class="gallery-overlay">
+    <div class="gallery-info">
+      <h4>Dokumentasi</h4>
+    </div>
+  </div>
+</div>
+<div class="gallery-item animate-on-scroll">
+  <img src="WhatsApp Image 2026-10-08 at 11.04.54.jpeg" alt="Nassya Gallery" loading="lazy">
+  <div class="gallery-overlay">
+    <div class="gallery-info">
+      <h4>Dokumentasi</h4>
+    </div>
+  </div>
+</div>
+<div class="gallery-item animate-on-scroll">
+  <img src="WhatsApp Image 2026-10-08 at 11.04.55.jpeg" alt="Nassya Gallery" loading="lazy">
+  <div class="gallery-overlay">
+    <div class="gallery-info">
+      <h4>Dokumentasi</h4>
+    </div>
+  </div>
+</div>
+<div class="gallery-item animate-on-scroll">
+  <img src="WhatsApp Image 2026-10-08 at 11.04.57 (1).jpeg" alt="Nassya Gallery" loading="lazy">
+  <div class="gallery-overlay">
+    <div class="gallery-info">
+      <h4>Dokumentasi</h4>
+    </div>
+  </div>
+</div>
+<div class="gallery-item animate-on-scroll">
+  <img src="WhatsApp Image 2026-10-08 at 11.04.57 (2).jpeg" alt="Nassya Gallery" loading="lazy">
+  <div class="gallery-overlay">
+    <div class="gallery-info">
+      <h4>Dokumentasi</h4>
+    </div>
+  </div>
+</div>
+<div class="gallery-item animate-on-scroll">
+  <img src="WhatsApp Image 2026-10-08 at 11.04.57.jpeg" alt="Nassya Gallery" loading="lazy">
+  <div class="gallery-overlay">
+    <div class="gallery-info">
+      <h4>Dokumentasi</h4>
+    </div>
+  </div>
+</div>
+<div class="gallery-item animate-on-scroll">
+  <img src="WhatsApp Image 2026-10-08 at 11.04.58.jpeg" alt="Nassya Gallery" loading="lazy">
+  <div class="gallery-overlay">
+    <div class="gallery-info">
+      <h4>Dokumentasi</h4>
+    </div>
+  </div>
+</div>
+<div class="gallery-item animate-on-scroll">
+  <img src="WhatsApp Image 2026-10-08 at 11.05.07 (1).jpeg" alt="Nassya Gallery" loading="lazy">
+  <div class="gallery-overlay">
+    <div class="gallery-info">
+      <h4>Dokumentasi</h4>
+    </div>
+  </div>
+</div>
+<div class="gallery-item animate-on-scroll">
+  <img src="WhatsApp Image 2026-10-08 at 11.05.07.jpeg" alt="Nassya Gallery" loading="lazy">
+  <div class="gallery-overlay">
+    <div class="gallery-info">
+      <h4>Dokumentasi</h4>
+    </div>
+  </div>
+</div>
+<div class="gallery-item animate-on-scroll">
+  <img src="WhatsApp Image 2026-10-08 at 11.05.08 (1).jpeg" alt="Nassya Gallery" loading="lazy">
+  <div class="gallery-overlay">
+    <div class="gallery-info">
+      <h4>Dokumentasi</h4>
+    </div>
+  </div>
+</div>
+<div class="gallery-item animate-on-scroll">
+  <img src="WhatsApp Image 2026-10-08 at 11.05.08 (2).jpeg" alt="Nassya Gallery" loading="lazy">
+  <div class="gallery-overlay">
+    <div class="gallery-info">
+      <h4>Dokumentasi</h4>
+    </div>
+  </div>
+</div>
+<div class="gallery-item animate-on-scroll">
+  <img src="WhatsApp Image 2026-10-08 at 11.05.08 (3).jpeg" alt="Nassya Gallery" loading="lazy">
+  <div class="gallery-overlay">
+    <div class="gallery-info">
+      <h4>Dokumentasi</h4>
+    </div>
+  </div>
+</div>
+<div class="gallery-item animate-on-scroll">
+  <img src="WhatsApp Image 2026-10-08 at 11.05.08.jpeg" alt="Nassya Gallery" loading="lazy">
+  <div class="gallery-overlay">
+    <div class="gallery-info">
+      <h4>Dokumentasi</h4>
+    </div>
+  </div>
+</div>
+<div class="gallery-item animate-on-scroll">
+  <img src="WhatsApp Image 2026-10-08 at 11.05.09 (1).jpeg" alt="Nassya Gallery" loading="lazy">
+  <div class="gallery-overlay">
+    <div class="gallery-info">
+      <h4>Dokumentasi</h4>
+    </div>
+  </div>
+</div>
+<div class="gallery-item animate-on-scroll">
+  <img src="WhatsApp Image 2026-10-08 at 11.05.09 (2).jpeg" alt="Nassya Gallery" loading="lazy">
+  <div class="gallery-overlay">
+    <div class="gallery-info">
+      <h4>Dokumentasi</h4>
+    </div>
+  </div>
+</div>
+<div class="gallery-item animate-on-scroll">
+  <img src="WhatsApp Image 2026-10-08 at 11.05.09.jpeg" alt="Nassya Gallery" loading="lazy">
+  <div class="gallery-overlay">
+    <div class="gallery-info">
+      <h4>Dokumentasi</h4>
+    </div>
+  </div>
+</div>
+<div class="gallery-item animate-on-scroll">
+  <img src="WhatsApp Image 2026-10-08 at 11.05.10 (1).jpeg" alt="Nassya Gallery" loading="lazy">
+  <div class="gallery-overlay">
+    <div class="gallery-info">
+      <h4>Dokumentasi</h4>
+    </div>
+  </div>
+</div>
+<div class="gallery-item animate-on-scroll">
+  <img src="WhatsApp Image 2026-10-08 at 11.05.10 (2).jpeg" alt="Nassya Gallery" loading="lazy">
+  <div class="gallery-overlay">
+    <div class="gallery-info">
+      <h4>Dokumentasi</h4>
+    </div>
+  </div>
+</div>
+<div class="gallery-item animate-on-scroll">
+  <img src="WhatsApp Image 2026-10-08 at 11.05.10.jpeg" alt="Nassya Gallery" loading="lazy">
+  <div class="gallery-overlay">
+    <div class="gallery-info">
+      <h4>Dokumentasi</h4>
+    </div>
+  </div>
+</div>
+<div class="gallery-item animate-on-scroll">
+  <img src="WhatsApp Image 2026-10-08 at 11.05.11 (1).jpeg" alt="Nassya Gallery" loading="lazy">
+  <div class="gallery-overlay">
+    <div class="gallery-info">
+      <h4>Dokumentasi</h4>
+    </div>
+  </div>
+</div>
+<div class="gallery-item animate-on-scroll">
+  <img src="WhatsApp Image 2026-10-08 at 11.05.11 (2).jpeg" alt="Nassya Gallery" loading="lazy">
+  <div class="gallery-overlay">
+    <div class="gallery-info">
+      <h4>Dokumentasi</h4>
+    </div>
+  </div>
+</div>
+<div class="gallery-item animate-on-scroll">
+  <img src="WhatsApp Image 2026-10-08 at 11.05.11 (3).jpeg" alt="Nassya Gallery" loading="lazy">
+  <div class="gallery-overlay">
+    <div class="gallery-info">
+      <h4>Dokumentasi</h4>
+    </div>
+  </div>
+</div>
+<div class="gallery-item animate-on-scroll">
+  <img src="WhatsApp Image 2026-10-08 at 11.05.11.jpeg" alt="Nassya Gallery" loading="lazy">
+  <div class="gallery-overlay">
+    <div class="gallery-info">
+      <h4>Dokumentasi</h4>
+    </div>
+  </div>
+</div>
+<div class="gallery-item animate-on-scroll">
+  <img src="WhatsApp Image 2026-10-08 at 11.05.12 (1).jpeg" alt="Nassya Gallery" loading="lazy">
+  <div class="gallery-overlay">
+    <div class="gallery-info">
+      <h4>Dokumentasi</h4>
+    </div>
+  </div>
+</div>
+<div class="gallery-item animate-on-scroll">
+  <img src="WhatsApp Image 2026-10-08 at 11.05.12 (2).jpeg" alt="Nassya Gallery" loading="lazy">
+  <div class="gallery-overlay">
+    <div class="gallery-info">
+      <h4>Dokumentasi</h4>
+    </div>
+  </div>
+</div>
+<div class="gallery-item animate-on-scroll">
+  <img src="WhatsApp Image 2026-10-08 at 11.05.12.jpeg" alt="Nassya Gallery" loading="lazy">
+  <div class="gallery-overlay">
+    <div class="gallery-info">
+      <h4>Dokumentasi</h4>
+    </div>
+  </div>
+</div>
+<div class="gallery-item animate-on-scroll">
+  <img src="WhatsApp Image 2026-10-08 at 11.05.13 (1).jpeg" alt="Nassya Gallery" loading="lazy">
+  <div class="gallery-overlay">
+    <div class="gallery-info">
+      <h4>Dokumentasi</h4>
+    </div>
+  </div>
+</div>
+<div class="gallery-item animate-on-scroll">
+  <img src="WhatsApp Image 2026-10-08 at 11.05.13 (2).jpeg" alt="Nassya Gallery" loading="lazy">
+  <div class="gallery-overlay">
+    <div class="gallery-info">
+      <h4>Dokumentasi</h4>
+    </div>
+  </div>
+</div>
+<div class="gallery-item animate-on-scroll">
+  <img src="WhatsApp Image 2026-10-08 at 11.05.13 (3).jpeg" alt="Nassya Gallery" loading="lazy">
+  <div class="gallery-overlay">
+    <div class="gallery-info">
+      <h4>Dokumentasi</h4>
+    </div>
+  </div>
+</div>
+<div class="gallery-item animate-on-scroll">
+  <img src="WhatsApp Image 2026-10-08 at 11.05.13.jpeg" alt="Nassya Gallery" loading="lazy">
+  <div class="gallery-overlay">
+    <div class="gallery-info">
+      <h4>Dokumentasi</h4>
+    </div>
+  </div>
+</div>
+<div class="gallery-item animate-on-scroll">
+  <img src="WhatsApp Image 2026-10-08 at 11.05.14 (1).jpeg" alt="Nassya Gallery" loading="lazy">
+  <div class="gallery-overlay">
+    <div class="gallery-info">
+      <h4>Dokumentasi</h4>
+    </div>
+  </div>
+</div>
+<div class="gallery-item animate-on-scroll">
+  <img src="WhatsApp Image 2026-10-08 at 11.05.14 (2).jpeg" alt="Nassya Gallery" loading="lazy">
+  <div class="gallery-overlay">
+    <div class="gallery-info">
+      <h4>Dokumentasi</h4>
+    </div>
+  </div>
+</div>
+<div class="gallery-item animate-on-scroll">
+  <img src="WhatsApp Image 2026-10-08 at 11.05.14.jpeg" alt="Nassya Gallery" loading="lazy">
+  <div class="gallery-overlay">
+    <div class="gallery-info">
+      <h4>Dokumentasi</h4>
+    </div>
+  </div>
+</div>
+<div class="gallery-item animate-on-scroll">
+  <img src="WhatsApp Image 2026-10-08 at 11.05.15 (1).jpeg" alt="Nassya Gallery" loading="lazy">
+  <div class="gallery-overlay">
+    <div class="gallery-info">
+      <h4>Dokumentasi</h4>
+    </div>
+  </div>
+</div>
+<div class="gallery-item animate-on-scroll">
+  <img src="WhatsApp Image 2026-10-08 at 11.05.15 (2).jpeg" alt="Nassya Gallery" loading="lazy">
+  <div class="gallery-overlay">
+    <div class="gallery-info">
+      <h4>Dokumentasi</h4>
+    </div>
+  </div>
+</div>
+<div class="gallery-item animate-on-scroll">
+  <img src="WhatsApp Image 2026-10-08 at 11.05.15.jpeg" alt="Nassya Gallery" loading="lazy">
+  <div class="gallery-overlay">
+    <div class="gallery-info">
+      <h4>Dokumentasi</h4>
+    </div>
+  </div>
+</div>
+<div class="gallery-item animate-on-scroll">
+  <img src="WhatsApp Image 2026-10-08 at 11.05.16 (1).jpeg" alt="Nassya Gallery" loading="lazy">
+  <div class="gallery-overlay">
+    <div class="gallery-info">
+      <h4>Dokumentasi</h4>
+    </div>
+  </div>
+</div>
+<div class="gallery-item animate-on-scroll">
+  <img src="WhatsApp Image 2026-10-08 at 11.05.16 (2).jpeg" alt="Nassya Gallery" loading="lazy">
+  <div class="gallery-overlay">
+    <div class="gallery-info">
+      <h4>Dokumentasi</h4>
+    </div>
+  </div>
+</div>
+<div class="gallery-item animate-on-scroll">
+  <img src="WhatsApp Image 2026-10-08 at 11.05.16 (3).jpeg" alt="Nassya Gallery" loading="lazy">
+  <div class="gallery-overlay">
+    <div class="gallery-info">
+      <h4>Dokumentasi</h4>
+    </div>
+  </div>
+</div>
+<div class="gallery-item animate-on-scroll">
+  <img src="WhatsApp Image 2026-10-08 at 11.05.16.jpeg" alt="Nassya Gallery" loading="lazy">
+  <div class="gallery-overlay">
+    <div class="gallery-info">
+      <h4>Dokumentasi</h4>
+    </div>
+  </div>
+</div>
+<div class="gallery-item animate-on-scroll">
+  <img src="WhatsApp Image 2026-10-08 at 11.05.17 (1).jpeg" alt="Nassya Gallery" loading="lazy">
+  <div class="gallery-overlay">
+    <div class="gallery-info">
+      <h4>Dokumentasi</h4>
+    </div>
+  </div>
+</div>
+<div class="gallery-item animate-on-scroll">
+  <img src="WhatsApp Image 2026-10-08 at 11.05.17 (2).jpeg" alt="Nassya Gallery" loading="lazy">
+  <div class="gallery-overlay">
+    <div class="gallery-info">
+      <h4>Dokumentasi</h4>
+    </div>
+  </div>
+</div>
+<div class="gallery-item animate-on-scroll">
+  <img src="WhatsApp Image 2026-10-08 at 11.05.17.jpeg" alt="Nassya Gallery" loading="lazy">
+  <div class="gallery-overlay">
+    <div class="gallery-info">
+      <h4>Dokumentasi</h4>
+    </div>
+  </div>
+</div>
+<div class="gallery-item animate-on-scroll">
+  <img src="WhatsApp Image 2026-10-08 at 11.05.18 (1).jpeg" alt="Nassya Gallery" loading="lazy">
+  <div class="gallery-overlay">
+    <div class="gallery-info">
+      <h4>Dokumentasi</h4>
+    </div>
+  </div>
+</div>
+<div class="gallery-item animate-on-scroll">
+  <img src="WhatsApp Image 2026-10-08 at 11.05.18 (2).jpeg" alt="Nassya Gallery" loading="lazy">
+  <div class="gallery-overlay">
+    <div class="gallery-info">
+      <h4>Dokumentasi</h4>
+    </div>
+  </div>
+</div>
+<div class="gallery-item animate-on-scroll">
+  <img src="WhatsApp Image 2026-10-08 at 11.05.18 (3).jpeg" alt="Nassya Gallery" loading="lazy">
+  <div class="gallery-overlay">
+    <div class="gallery-info">
+      <h4>Dokumentasi</h4>
+    </div>
+  </div>
+</div>
+<div class="gallery-item animate-on-scroll">
+  <img src="WhatsApp Image 2026-10-08 at 11.05.18.jpeg" alt="Nassya Gallery" loading="lazy">
+  <div class="gallery-overlay">
+    <div class="gallery-info">
+      <h4>Dokumentasi</h4>
+    </div>
+  </div>
+</div>
+<div class="gallery-item animate-on-scroll">
+  <img src="WhatsApp Image 2026-10-08 at 11.05.19 (1).jpeg" alt="Nassya Gallery" loading="lazy">
+  <div class="gallery-overlay">
+    <div class="gallery-info">
+      <h4>Dokumentasi</h4>
+    </div>
+  </div>
+</div>
+<div class="gallery-item animate-on-scroll">
+  <img src="WhatsApp Image 2026-10-08 at 11.05.19 (2).jpeg" alt="Nassya Gallery" loading="lazy">
+  <div class="gallery-overlay">
+    <div class="gallery-info">
+      <h4>Dokumentasi</h4>
+    </div>
+  </div>
+</div>
+<div class="gallery-item animate-on-scroll">
+  <img src="WhatsApp Image 2026-10-08 at 11.05.19.jpeg" alt="Nassya Gallery" loading="lazy">
+  <div class="gallery-overlay">
+    <div class="gallery-info">
+      <h4>Dokumentasi</h4>
+    </div>
+  </div>
+</div>
+<div class="gallery-item animate-on-scroll">
+  <img src="WhatsApp Image 2026-10-08 at 11.05.20 (1).jpeg" alt="Nassya Gallery" loading="lazy">
+  <div class="gallery-overlay">
+    <div class="gallery-info">
+      <h4>Dokumentasi</h4>
+    </div>
+  </div>
+</div>
+<div class="gallery-item animate-on-scroll">
+  <img src="WhatsApp Image 2026-10-08 at 11.05.20 (2).jpeg" alt="Nassya Gallery" loading="lazy">
+  <div class="gallery-overlay">
+    <div class="gallery-info">
+      <h4>Dokumentasi</h4>
+    </div>
+  </div>
+</div>
+<div class="gallery-item animate-on-scroll">
+  <img src="WhatsApp Image 2026-10-08 at 11.05.20.jpeg" alt="Nassya Gallery" loading="lazy">
+  <div class="gallery-overlay">
+    <div class="gallery-info">
+      <h4>Dokumentasi</h4>
+    </div>
+  </div>
+</div>
+<div class="gallery-item animate-on-scroll">
+  <img src="WhatsApp Image 2026-10-08 at 11.05.21 (1).jpeg" alt="Nassya Gallery" loading="lazy">
+  <div class="gallery-overlay">
+    <div class="gallery-info">
+      <h4>Dokumentasi</h4>
+    </div>
+  </div>
+</div>
+<div class="gallery-item animate-on-scroll">
+  <img src="WhatsApp Image 2026-10-08 at 11.05.21 (2).jpeg" alt="Nassya Gallery" loading="lazy">
+  <div class="gallery-overlay">
+    <div class="gallery-info">
+      <h4>Dokumentasi</h4>
+    </div>
+  </div>
+</div>
+<div class="gallery-item animate-on-scroll">
+  <img src="WhatsApp Image 2026-10-08 at 11.05.21.jpeg" alt="Nassya Gallery" loading="lazy">
+  <div class="gallery-overlay">
+    <div class="gallery-info">
+      <h4>Dokumentasi</h4>
+    </div>
+  </div>
+</div>
+<div class="gallery-item animate-on-scroll">
+  <img src="WhatsApp Image 2026-10-08 at 11.09.25.jpeg" alt="Nassya Gallery" loading="lazy">
+  <div class="gallery-overlay">
+    <div class="gallery-info">
+      <h4>Dokumentasi</h4>
+    </div>
+  </div>
+</div>
+<div class="gallery-item animate-on-scroll">
+  <img src="WhatsApp Image 2026-10-08 at 11.09.26 (1).jpeg" alt="Nassya Gallery" loading="lazy">
+  <div class="gallery-overlay">
+    <div class="gallery-info">
+      <h4>Dokumentasi</h4>
+    </div>
+  </div>
+</div>
+<div class="gallery-item animate-on-scroll">
+  <img src="WhatsApp Image 2026-10-08 at 11.09.26 (2).jpeg" alt="Nassya Gallery" loading="lazy">
+  <div class="gallery-overlay">
+    <div class="gallery-info">
+      <h4>Dokumentasi</h4>
+    </div>
+  </div>
+</div>
+<div class="gallery-item animate-on-scroll">
+  <img src="WhatsApp Image 2026-10-08 at 11.09.26.jpeg" alt="Nassya Gallery" loading="lazy">
+  <div class="gallery-overlay">
+    <div class="gallery-info">
+      <h4>Dokumentasi</h4>
+    </div>
+  </div>
+</div>
+<div class="gallery-item animate-on-scroll">
+  <img src="WhatsApp Image 2026-10-08 at 11.09.27 (1).jpeg" alt="Nassya Gallery" loading="lazy">
+  <div class="gallery-overlay">
+    <div class="gallery-info">
+      <h4>Dokumentasi</h4>
+    </div>
+  </div>
+</div>
+<div class="gallery-item animate-on-scroll">
+  <img src="WhatsApp Image 2026-10-08 at 11.09.27.jpeg" alt="Nassya Gallery" loading="lazy">
+  <div class="gallery-overlay">
+    <div class="gallery-info">
+      <h4>Dokumentasi</h4>
+    </div>
+  </div>
+</div>
+
+
+        </div>
+      </div>
+
+            <!-- TAB: Tech Stack / Skills -->
+      <div class="tab-content" id="tab-skills">
+        <!-- Certifications (Prominently Placed at Top) -->
+        <div class="cert-section animate-on-scroll">
+          <h3 class="cert-title">📋 Certifications</h3>
+          <div class="cert-grid">
+            <div class="cert-card glass-card animated-glow-card" data-cert="CERTIFICATION INTRODUCTION.pdf" data-badge="🏅 Cisco Verified" tabindex="0" role="button" aria-label="Lihat Sertifikat Introduction to Networks">
+              <div class="cert-card-left">
+                <span class="cert-icon">🏅</span>
+                <div>
+                  <strong>Introduction to Networks</strong>
+                  <p>Cisco Networking Academy · September 2025</p>
+                </div>
+              </div>
+              <div class="cert-view-btn"><span>📜</span> Lihat Sertifikat</div>
+            </div>
+            <div class="cert-card glass-card animated-glow-card" data-cert="CERTIFICATION SWITCHING ROUTING.pdf" data-badge="🏅 Cisco Verified" tabindex="0" role="button" aria-label="Lihat Sertifikat Switching, Routing, and Wireless Essentials">
+              <div class="cert-card-left">
+                <span class="cert-icon">🏅</span>
+                <div>
+                  <strong>Switching, Routing, and Wireless Essentials</strong>
+                  <p>Cisco Networking Academy · January 2026</p>
+                </div>
+              </div>
+              <div class="cert-view-btn"><span>📜</span> Lihat Sertifikat</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Interactive Telecom & IoT Network Simulator -->
+        <div class="telecom-simulator-card animate-on-scroll">
+          <div class="telecom-sim-header">
+            <div class="sim-title-group">
+              <div class="sim-icon-glow">📡</div>
+              <div>
+                <h4>Interactive Telecom & IoT Network Simulator</h4>
+                <p>Simulasi Pengiriman Paket Data Sensor Real-Time (LoRaWAN / MQTT / Fiber / 5G)</p>
+              </div>
+            </div>
+            <div class="sim-status-pill">
+              <span class="sim-status-dot"></span>
+              <span id="simCarrierStatus">CARRIER: LOCKED · 915 MHz</span>
+            </div>
+          </div>
+
+          <!-- Pipeline Visual Nodes -->
+          <div class="sim-pipeline">
+            <div class="sim-conduit-overlay">
+              <div class="sim-flying-packet" id="simPacket"></div>
+            </div>
+            <div class="sim-node" id="simNode1">
+              <span class="sim-node-icon">📡</span>
+              <div class="sim-node-name">ESP32 Edge Node</div>
+              <div class="sim-node-sub">Sensor TX (SPI/I2C)</div>
+            </div>
+            <div class="sim-node" id="simNode2">
+              <span class="sim-node-icon">🗼</span>
+              <div class="sim-node-name">Telecom Gateway</div>
+              <div class="sim-node-sub">RF Base Station</div>
+            </div>
+            <div class="sim-node" id="simNode3">
+              <span class="sim-node-icon">☁️</span>
+              <div class="sim-node-name">MQTT Broker</div>
+              <div class="sim-node-sub">Cloud Core Cluster</div>
+            </div>
+            <div class="sim-node" id="simNode4">
+              <span class="sim-node-icon">💻</span>
+              <div class="sim-node-name">Telemetry Dashboard</div>
+              <div class="sim-node-sub">Web Client UI</div>
+            </div>
+          </div>
+
+          <!-- Simulator Controls -->
+          <div class="sim-controls-bar">
+            <div class="sim-protocol-group">
+              <span style="font-size:0.75rem; color:var(--text-muted); margin-right:4px;">Protokol:</span>
+              <button type="button" class="sim-proto-btn active" data-proto="lora">LoRaWAN (915MHz)</button>
+              <button type="button" class="sim-proto-btn" data-proto="mqtt">MQTT / IoT</button>
+              <button type="button" class="sim-proto-btn" data-proto="fiber">FTTH Optical</button>
+              <button type="button" class="sim-proto-btn" data-proto="5g">5G NR Sub-6</button>
+            </div>
+            <div class="sim-action-group">
+              <button type="button" class="sim-btn-tx" id="simTxBtn">
+                <span>⚡</span> Transmit Packet
+              </button>
+            </div>
+          </div>
+
+          <!-- Live Telemetry Monitor -->
+          <div class="sim-telemetry-console">
+            <div class="telemetry-col-metrics">
+              <div class="sim-metric-box">
+                <span class="sim-metric-lbl">Signal RSSI</span>
+                <span class="sim-metric-val" id="simMetricRssi">-64 dBm</span>
+              </div>
+              <div class="sim-metric-box">
+                <span class="sim-metric-lbl">Latency / Ping</span>
+                <span class="sim-metric-val" id="simMetricPing">14 ms</span>
+              </div>
+              <div class="sim-metric-box">
+                <span class="sim-metric-lbl">SNR / Quality</span>
+                <span class="sim-metric-val" id="simMetricSnr">+9.8 dB</span>
+              </div>
+              <div class="sim-metric-box">
+                <span class="sim-metric-lbl">Packet Loss</span>
+                <span class="sim-metric-val" id="simMetricLoss" style="color:#34d399;">0.0%</span>
+              </div>
+            </div>
+            <div class="telemetry-col-log" id="simLogConsole">
+              <div><span class="log-hl">[INIT]</span> Telecom telemetry subsystem active. Carrier synchronized.</div>
+              <div><span class="log-hl">[READY]</span> Click 'Transmit Packet' to broadcast data packet across network nodes.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 6 Skill Categories Grid -->
+        <div class="skills-showcase">
+          <div class="skill-category glass-card animate-on-scroll">
+            <div class="skill-cat-header">
+              <span class="skill-cat-icon">⚡</span>
+              <h3>Electronics & Instrumentation</h3>
+            </div>
+            <div class="skill-tags">
+              <span class="skill-tag">Oscilloscope</span>
+              <span class="skill-tag">Multimeter</span>
+              <span class="skill-tag">Function Generator</span>
+              <span class="skill-tag">Spectrum Analyzer</span>
+              <span class="skill-tag">Signal Generator</span>
+              <span class="skill-tag">Network Analyzer</span>
+            </div>
+          </div>
+
+          <div class="skill-category glass-card animate-on-scroll">
+            <div class="skill-cat-header">
+              <span class="skill-cat-icon">🌐</span>
+              <h3>Networking</h3>
+            </div>
+            <div class="skill-tags">
+              <span class="skill-tag">Cisco</span>
+              <span class="skill-tag">Cisco Packet Tracer</span>
+              <span class="skill-tag">Atoll</span>
+            </div>
+          </div>
+
+          <div class="skill-category glass-card animate-on-scroll">
+            <div class="skill-cat-header">
+              <span class="skill-cat-icon">💻</span>
+              <h3>Programming & Algorithms</h3>
+            </div>
+            <div class="skill-tags">
+              <span class="skill-tag">MATLAB</span>
+              <span class="skill-tag">Python</span>
+              <span class="skill-tag">Flowgorithm</span>
+            </div>
+          </div>
+
+          <div class="skill-category glass-card animate-on-scroll">
+            <div class="skill-cat-header">
+              <span class="skill-cat-icon">🔬</span>
+              <h3>Simulation & Design</h3>
+            </div>
+            <div class="skill-tags">
+              <span class="skill-tag">OptiSystem</span>
+              <span class="skill-tag">CST Studio Suite</span>
+              <span class="skill-tag">EasyEDA</span>
+              <span class="skill-tag">Eagle PCB</span>
+              <span class="skill-tag">SoMachine</span>
+              <span class="skill-tag">Fluidsim</span>
+            </div>
+          </div>
+
+          <div class="skill-category glass-card animate-on-scroll">
+            <div class="skill-cat-header">
+              <span class="skill-cat-icon">🔧</span>
+              <h3>Hardware & Installation</h3>
+            </div>
+            <div class="skill-tags">
+              <span class="skill-tag">Fiber Optic Splicing</span>
+              <span class="skill-tag">ODP Installation</span>
+              <span class="skill-tag">Connector Installation</span>
+              <span class="skill-tag">Antenna Design</span>
+              <span class="skill-tag">EMC</span>
+            </div>
+          </div>
+
+          <div class="skill-category glass-card animate-on-scroll">
+            <div class="skill-cat-header">
+              <span class="skill-cat-icon">🌟</span>
+              <h3>Soft Skills</h3>
+            </div>
+            <div class="skill-tags">
+              <span class="skill-tag soft">Public Speaking</span>
+              <span class="skill-tag soft">Leadership</span>
+              <span class="skill-tag soft">Time Management</span>
+              <span class="skill-tag soft">Problem Solving</span>
+              <span class="skill-tag soft">Creativity</span>
+              <span class="skill-tag soft">Adaptability</span>
+              <span class="skill-tag soft">Empathy</span>
+              <span class="skill-tag soft">Professionalism</span>
+            </div>
+          </div>
+        </div> <!-- Close .skills-showcase -->
+
+        <!-- Skill Proficiency Bars (Centered) -->
+        <div class="skill-proficiency-section glass-card animate-on-scroll">
+          <div class="skill-prof-header">
+            <span class="skill-cat-icon">📊</span>
+            <h3>Skill Proficiency</h3>
+          </div>
+          <div class="proficiency-bars">
+            <div class="prof-bar-item">
+              <div class="prof-bar-label">
+                <span>IoT & Embedded Systems</span>
+                <span class="prof-percent">92%</span>
+              </div>
+              <div class="prof-bar-track"><div class="prof-bar-fill" data-width="92" style="--bar-color: linear-gradient(90deg, #3b82f6, #6366f1);"></div></div>
+            </div>
+            <div class="prof-bar-item">
+              <div class="prof-bar-label">
+                <span>Network & Cisco</span>
+                <span class="prof-percent">85%</span>
+              </div>
+              <div class="prof-bar-track"><div class="prof-bar-fill" data-width="85" style="--bar-color: linear-gradient(90deg, #8b5cf6, #7c3aed);"></div></div>
+            </div>
+            <div class="prof-bar-item">
+              <div class="prof-bar-label">
+                <span>Python & Computer Vision</span>
+                <span class="prof-percent">85%</span>
+              </div>
+              <div class="prof-bar-track"><div class="prof-bar-fill" data-width="85" style="--bar-color: linear-gradient(90deg, #10b981, #059669);"></div></div>
+            </div>
+            <div class="prof-bar-item">
+              <div class="prof-bar-label">
+                <span>MATLAB & Signal Processing</span>
+                <span class="prof-percent">80%</span>
+              </div>
+              <div class="prof-bar-track"><div class="prof-bar-fill" data-width="80" style="--bar-color: linear-gradient(90deg, #f59e0b, #d97706);"></div></div>
+            </div>
+            <div class="prof-bar-item">
+              <div class="prof-bar-label">
+                <span>PCB & Circuit Design</span>
+                <span class="prof-percent">78%</span>
+              </div>
+              <div class="prof-bar-track"><div class="prof-bar-fill" data-width="78" style="--bar-color: linear-gradient(90deg, #14b8a6, #0d9488);"></div></div>
+            </div>
+            <div class="prof-bar-item">
+              <div class="prof-bar-label">
+                <span>RF & Antenna Design</span>
+                <span class="prof-percent">75%</span>
+              </div>
+              <div class="prof-bar-track"><div class="prof-bar-fill" data-width="75" style="--bar-color: linear-gradient(90deg, #ec4899, #db2777);"></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB: Achievements / Awards -->
+      <div class="tab-content" id="tab-achievements">
+        <!-- Awards Filter -->
+        <div class="awards-filter" id="awardsFilter">
+          <button class="award-filter-btn active" data-filter="all">
+            <span>🏆</span> Semua <span class="filter-count">11</span>
+          </button>
+          <button class="award-filter-btn" data-filter="sains">
+            <span>🔬</span> Sains & Olimpiade <span class="filter-count">4</span>
+          </button>
+          <button class="award-filter-btn" data-filter="akademik">
+            <span>🎓</span> Akademik <span class="filter-count">2</span>
+          </button>
+          <button class="award-filter-btn" data-filter="tulis">
+            <span>✍️</span> Kepenulisan <span class="filter-count">2</span>
+          </button>
+          <button class="award-filter-btn" data-filter="tahfidz">
+            <span>🕌</span> Tahfidz & Agama <span class="filter-count">2</span>
+          </button>
+          <button class="award-filter-btn" data-filter="tech">
+            <span>🤖</span> IoT & Teknologi <span class="filter-count">1</span>
+          </button>
+        </div>
+
+        <div class="achievements-grid">
+
+          <div class="achievement-card glass-card animate-on-scroll animated-glow-card" data-cert="sertifikat-nyso-physics-2025.pdf" data-category="sains" tabindex="0" role="button" aria-label="Lihat Sertifikat Gold Medal Physics">
+            <div class="achieve-icon">🥇</div>
+            <h3>Gold Medal – Physics</h3>
+            <p>National Youth Science Olympiad 2.0 (2025)</p>
+            <span class="achieve-org">Alberta Nusa Education</span>
+            <div class="cert-badge"><span>📜</span> Lihat Sertifikat</div>
+          </div>
+
+          <div class="achievement-card glass-card animate-on-scroll animated-glow-card" data-cert="sertifikat-isc-physics-2024.pdf" data-category="sains" tabindex="0" role="button" aria-label="Lihat Sertifikat Gold Medal Physics ISC">
+            <div class="achieve-icon">🥇</div>
+            <h3>Gold Medal – Physics</h3>
+            <p>Indonesian Science Championship (2024)</p>
+            <span class="achieve-org">Indonesian Science Competition</span>
+            <div class="cert-badge"><span>📜</span> Lihat Sertifikat</div>
+          </div>
+
+          <div class="achievement-card glass-card animate-on-scroll animated-glow-card" data-cert="sertifikat-nsso-physics-2024.pdf" data-category="sains" tabindex="0" role="button" aria-label="Lihat Sertifikat Gold Medal Physics NSSO">
+            <div class="achieve-icon">🥇</div>
+            <h3>Gold Medal – Physics</h3>
+            <p>National Science and Statistics Olympiad (2024)</p>
+            <span class="achieve-org">OSSN – Yapresindo</span>
+            <div class="cert-badge"><span>📜</span> Lihat Sertifikat</div>
+          </div>
+
+          <div class="achievement-card glass-card animate-on-scroll animated-glow-card" data-cert="sertifikat-nsso-math-2024.pdf" data-category="sains" tabindex="0" role="button" aria-label="Lihat Sertifikat Bronze Medal Math NSSO">
+            <div class="achieve-icon">🥉</div>
+            <h3>Bronze Medal – Mathematics</h3>
+            <p>National Science and Statistics Olympiad (2024)</p>
+            <span class="achieve-org">OSSN – Yapresindo</span>
+            <div class="cert-badge"><span>📜</span> Lihat Sertifikat</div>
+          </div>
+
+          <div class="achievement-card glass-card animate-on-scroll animated-glow-card" data-cert="sertifikat-gineco-2024.pdf" data-category="tech" tabindex="0" role="button" aria-label="Lihat Sertifikat Bronze Medal GINECO">
+            <div class="achieve-icon">🥉</div>
+            <h3>Bronze Medal (Team)</h3>
+            <p>GINECO International Competition (2024)</p>
+            <span class="achieve-org">IoT Air Temp & Humidity Control System</span>
+            <div class="cert-badge"><span>📜</span> Lihat Sertifikat</div>
+          </div>
+
+          <div class="achievement-card glass-card animate-on-scroll animated-glow-card" data-cert="sertifikat-highest-gpa-397.jpeg" data-category="akademik" tabindex="0" role="button" aria-label="Lihat Dokumentasi Highest GPA 3.97">
+            <div class="achieve-icon">🏆</div>
+            <h3>Highest GPA (3.97)</h3>
+            <p>Electronics Telecom Engineering, 23rd Cohort (2024)</p>
+            <span class="achieve-org">Top performing student at PCR</span>
+            <div class="cert-badge"><span>📄</span> Lihat Dokumentasi</div>
+          </div>
+
+          <div class="achievement-card glass-card animate-on-scroll animated-glow-card" data-cert="sertifikat-beasiswa-tahfidz.png" data-category="tahfidz" tabindex="0" role="button" aria-label="Lihat Sertifikat Beasiswa Tahfidz">
+            <div class="achieve-icon">📜</div>
+            <h3>Tahfidz Scholarship</h3>
+            <p>Government of Riau Province (2023)</p>
+            <span class="achieve-org">Qur'an Memorization & Academic Excellence</span>
+            <div class="cert-badge"><span>📜</span> Lihat Sertifikat</div>
+          </div>
+
+          <div class="achievement-card glass-card animate-on-scroll animated-glow-card" data-cert="sertifikat-msq-finalist.pdf" data-category="tahfidz" tabindex="0" role="button" aria-label="Lihat Sertifikat Finalist MSQ">
+            <div class="achieve-icon">🎤</div>
+            <h3>Finalist – MSQ</h3>
+            <p>Musabaqah Syarhil Qur'an</p>
+            <span class="achieve-org">Qur'anic Interpretation & Public Speaking</span>
+            <div class="cert-badge"><span>📜</span> Lihat Sertifikat</div>
+          </div>
+
+          <div class="achievement-card glass-card animate-on-scroll animated-glow-card" data-cert="sertifikat-poetry-writing-2025.pdf" data-category="tulis" tabindex="0" role="button" aria-label="Lihat Sertifikat Poetry Writing">
+            <div class="achieve-icon">✍️</div>
+            <h3>3rd Place – Poetry Writing</h3>
+            <p>National Poetry Writing Competition (2025)</p>
+            <span class="achieve-org">RedGolden Competition Indonesia</span>
+            <div class="cert-badge"><span>📜</span> Lihat Sertifikat</div>
+          </div>
+
+          <div class="achievement-card glass-card animate-on-scroll animated-glow-card" data-cert="sertifikat-essay-uin-2026.png" data-category="tulis" tabindex="0" role="button" aria-label="Lihat Sertifikat National Essay Competition">
+            <div class="achieve-icon">🥈</div>
+            <h3>2nd Place – National Essay Competition</h3>
+            <p>National Essay Competition (2026)</p>
+            <span class="achieve-org">HMJ Kimia UIN Alauddin Makassar</span>
+            <div class="cert-badge"><span>📜</span> Lihat Sertifikat</div>
+          </div>
+
+          <div class="achievement-card glass-card animate-on-scroll animated-glow-card" data-cert="sertifikat-highest-gpa-394.png" data-category="akademik" tabindex="0" role="button" aria-label="Lihat Dokumentasi Highest GPA 3.94">
+            <div class="achieve-icon">🏆</div>
+            <h3>Highest GPA (3.94)</h3>
+            <p>Electronics Telecom Engineering, 23rd Cohort (2026)</p>
+            <span class="achieve-org">Continuing academic excellence at PCR</span>
+            <div class="cert-badge"><span>📄</span> Lihat Dokumentasi</div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- TAB: Organizations -->
+      <div class="tab-content" id="tab-organizations">
+        <div class="org-grid">
+
+          <div class="org-card glass-card animate-on-scroll">
+            <div class="org-header">
+              <div class="org-icon">🏛️</div>
+              <div>
+                <h3>Student Legislative Body (BLM)</h3>
+                <p class="org-place">Politeknik Caltex Riau</p>
+              </div>
+            </div>
+            <div class="org-roles">
+              <div class="org-role">
+                <span class="role-year">2025–2026</span>
+                <span class="role-title">Head of Commission II – Law & Legislation</span>
+              </div>
+              <div class="org-role">
+                <span class="role-year">2024–2025</span>
+                <span class="role-title">Member of Commission II – Law & Legislation</span>
+              </div>
+            </div>
+            <ul class="org-list">
+              <li>Drafting, evaluating, and supervising internal student policies</li>
+              <li>Coordinating members in creating and reviewing legislative products</li>
+            </ul>
+          </div>
+
+          <div class="org-card glass-card animate-on-scroll">
+            <div class="org-header">
+              <div class="org-icon">☪️</div>
+              <div>
+                <h3>Islamic Student Activity Unit (UKMI)</h3>
+                <p class="org-place">Politeknik Caltex Riau</p>
+              </div>
+            </div>
+            <div class="org-roles">
+              <div class="org-role">
+                <span class="role-year">2026–2027</span>
+                <span class="role-title">Supervisor</span>
+              </div>
+              <div class="org-role">
+                <span class="role-year">2025–2026</span>
+                <span class="role-title">Majelis Syuro / Advisory Board</span>
+              </div>
+              <div class="org-role">
+                <span class="role-year">2024–2025</span>
+                <span class="role-title">Head of Muslimah Department</span>
+              </div>
+            </div>
+            <ul class="org-list">
+              <li>Supervised organizational activities and provided strategic guidance</li>
+              <li>Led Muslimah development programs</li>
+            </ul>
+          </div>
+
+          <div class="org-card glass-card animate-on-scroll">
+            <div class="org-header">
+              <div class="org-icon">⚙️</div>
+              <div>
+                <h3>Association of Electronics & Telecom (AET)</h3>
+                <p class="org-place">Politeknik Caltex Riau</p>
+              </div>
+            </div>
+            <div class="org-roles">
+              <div class="org-role">
+                <span class="role-year">2025–2026</span>
+                <span class="role-title">Research & Technology Division</span>
+              </div>
+              <div class="org-role">
+                <span class="role-year">2024–2025</span>
+                <span class="role-title">Cadre Division</span>
+              </div>
+            </div>
+            <ul class="org-list">
+              <li>Contributed to technical projects, recruitment, and member development</li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Cyber Section Divider: Portfolio to Moments -->
+  <div class="cyber-section-divider" aria-hidden="true">
+    <div class="divider-track track-left"><span class="divider-beam"></span></div>
+    <div class="divider-core"><span class="core-pulse"></span><span class="core-diamond"></span></div>
+    <div class="divider-track track-right"><span class="divider-beam"></span></div>
+  </div>
+
+  <!-- ===== CAPTURING MOMENTS ===== -->
+  <section class="section section-converge" id="moments">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge">Gallery & Highlights</span>
+        <h2 class="section-title">Capturing <span class="gradient-text">Moments</span></h2>
+        <p class="section-desc">Dokumentasi momen berharga dalam perjalanan karir, organisasi, dan pendidikanku.</p>
+      </div>
+    </div>
+    <div class="photo-marquee-container">
+      <div class="photo-marquee-content">
+        <img src="WhatsApp Image 2026-10-08 at 11.04.40.jpeg" alt="Moment"><img src="WhatsApp Image 2026-10-08 at 11.04.43.jpeg" alt="Moment"><img src="WhatsApp Image 2026-10-08 at 11.04.46.jpeg" alt="Moment"><img src="WhatsApp Image 2026-10-08 at 11.04.47.jpeg" alt="Moment"><img src="WhatsApp Image 2026-10-08 at 11.04.52.jpeg" alt="Moment"><img src="WhatsApp Image 2026-10-08 at 11.05.07.jpeg" alt="Moment"><img src="WhatsApp Image 2026-10-08 at 11.05.08.jpeg" alt="Moment"><img src="WhatsApp Image 2026-10-08 at 11.05.09.jpeg" alt="Moment"><img src="WhatsApp Image 2026-10-08 at 11.04.40.jpeg" alt="Moment"><img src="WhatsApp Image 2026-10-08 at 11.04.43.jpeg" alt="Moment"><img src="WhatsApp Image 2026-10-08 at 11.04.46.jpeg" alt="Moment"><img src="WhatsApp Image 2026-10-08 at 11.04.47.jpeg" alt="Moment"><img src="WhatsApp Image 2026-10-08 at 11.04.52.jpeg" alt="Moment"><img src="WhatsApp Image 2026-10-08 at 11.05.07.jpeg" alt="Moment"><img src="WhatsApp Image 2026-10-08 at 11.05.08.jpeg" alt="Moment"><img src="WhatsApp Image 2026-10-08 at 11.05.09.jpeg" alt="Moment">
+      </div>
+    </div>
+  </section>
+
+  <!-- Cyber Section Divider: Moments to Contact -->
+  <div class="cyber-section-divider" aria-hidden="true">
+    <div class="divider-track track-left"><span class="divider-beam"></span></div>
+    <div class="divider-core"><span class="core-pulse"></span><span class="core-diamond"></span></div>
+    <div class="divider-track track-right"><span class="divider-beam"></span></div>
+  </div>
+
+  <!-- ===== CONTACT SECTION ===== -->
+  <section class="section section-converge" id="contact">
+    <div class="container contact-container">
+      <div class="section-header">
+        <span class="section-badge">Let's Connect</span>
+        <h2 class="section-title">Get In <span class="gradient-text">Touch</span></h2>
+        <p class="section-desc">Tertarik untuk kolaborasi proyek, riset teknologi, atau peluang karir? Kirim pesan langsung di bawah ini.</p>
+      </div>
+      <div class="contact-layout animate-slide-up">
+        
+        <!-- Left: Form -->
+        <div class="contact-form-side glass-card converge-left">
+          <form id="contactForm" class="contact-form" action="https://formsubmit.co/nassyaadystira@gmail.com" method="POST">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="_subject" value="Pesan Baru dari Portfolio Nassya!">
+
+            <div class="input-group">
+              <span class="input-icon">👤</span>
+              <input type="text" id="cName" name="name" placeholder="Nama Anda" required />
+            </div>
+            <div class="input-group">
+              <span class="input-icon">✉️</span>
+              <input type="email" id="cEmail" name="email" placeholder="Email Anda" required />
+            </div>
+            <div class="input-group align-top">
+              <span class="input-icon" style="margin-top: 14px;">💬</span>
+              <textarea id="cMessage" name="message" rows="5" placeholder="Pesan Anda" required></textarea>
+            </div>
+            <button type="submit" class="btn-submit">
+              <span class="btn-icon">✈️</span> Kirim Pesan
+            </button>
+          </form>
+        </div>
+
+        <!-- Right: Find Me -->
+        <div class="contact-info-side converge-right">
+          <h3 class="find-me-title">FIND ME</h3>
+          <div class="social-cards">
+            <a href="mailto:nassyaadystira@gmail.com" class="social-card glass-card">
+              <div class="sc-icon" style="background:#ea4335;">✉️</div>
+              <div class="sc-text">
+                <h4>Email</h4>
+                <p>nassyaadystira@gmail.com</p>
+              </div>
+            </a>
+            <a href="https://www.linkedin.com/in/nassya-adystira-09b844319/" target="_blank" class="social-card glass-card">
+              <div class="sc-icon" style="background:#0a66c2;">in</div>
+              <div class="sc-text">
+                <h4>Let's Connect</h4>
+                <p>on LinkedIn</p>
+              </div>
+            </a>
+            <a href="https://www.instagram.com/nassyaadystira" target="_blank" class="social-card glass-card">
+              <div class="sc-icon" style="background:linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);">📸</div>
+              <div class="sc-text">
+                <h4>Instagram</h4>
+                <p>@nassyaadystira</p>
+              </div>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <p>© 2026 Nassya Adystira · Built with 💙</p>
+  </footer>
+
+  <!-- Back to Top -->
+  <button class="back-to-top" id="backToTop" aria-label="Back to top">↑</button>
+
+  <!-- Image Modal for Gallery -->
+  <div id="imageModal" class="modal">
+    <span class="modal-close">&times;</span>
+    <img class="modal-content" id="modalImg">
+    <div id="modalCaption"></div>
+  </div>
+
+  
+
+  <!-- Project Detail Modal -->
+  <div id="projectModal" class="project-modal">
+    <div class="project-modal-content glass-card">
+      <button class="project-modal-close" aria-label="Close">&times;</button>
+      <div class="project-modal-layout">
+        <div class="project-modal-image">
+          <img id="pm-image" src="" alt="Project Image" onerror="this.style.display='none'; document.getElementById('pm-placeholder').style.display='flex';" />
+          <div id="pm-placeholder" class="pm-placeholder">
+            <span id="pm-icon">🚀</span>
+          </div>
+        </div>
+        <div class="project-modal-info">
+          <div class="pm-badge-wrap">
+            <span id="pm-year" class="project-badge"></span>
+            <span id="pm-role" class="project-role"></span>
+          </div>
+          <h3 id="pm-title">Project Title</h3>
+          <div id="pm-tags" class="project-tags"></div>
+          
+          <div class="pm-section">
+            <h4>Overview</h4>
+            <p id="pm-desc">Project overview goes here.</p>
+          </div>
+          
+          <div class="pm-section">
+            <h4>Key Features / Impact</h4>
+            <ul id="pm-features" class="pm-features-list"></ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  
+  
+
+
+  <!-- Certificate Viewer Modal -->
+  <div id="certModal" class="cert-modal" aria-hidden="true" role="dialog">
+    <div class="cert-modal-backdrop" id="certModalBackdrop"></div>
+    <div class="cert-modal-dialog glass-card">
+      <div class="cert-modal-header">
+        <div class="cert-modal-titles">
+          <span class="cert-modal-badge" id="certModalBadge">🏆 Official Certificate</span>
+          <h3 id="certModalTitle">Judul Penghargaan</h3>
+          <p id="certModalSubtitle">Keterangan Kegiatan</p>
+        </div>
+        <div class="cert-modal-actions">
+          <a id="certModalOpenBtn" href="#" target="_blank" rel="noopener" class="cert-modal-btn" title="Buka di Tab Baru">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+            <span>Tab Baru</span>
+          </a>
+          <a id="certModalDownloadBtn" href="#" download class="cert-modal-btn" title="Unduh File">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+            <span>Unduh</span>
+          </a>
+          <button id="certModalCloseBtn" class="cert-modal-close" aria-label="Tutup Modal">&times;</button>
+        </div>
+      </div>
+      
+      <div class="cert-modal-body">
+        <!-- Image Container -->
+        <div id="certImageWrap" class="cert-image-wrap" style="display:none;">
+          <img id="certModalImg" src="" alt="Sertifikat Penghargaan" />
+        </div>
+        <!-- PDF Container -->
+        <div id="certPdfWrap" class="cert-pdf-wrap" style="display:none;">
+          <iframe id="certModalIframe" src="" title="Dokumen Sertifikat PDF"></iframe>
+          <div class="cert-pdf-fallback" id="certPdfFallback">
+            <span>Jika dokumen tidak tampil otomatis di layar Anda:</span>
+            <a id="certPdfFallbackBtn" href="#" target="_blank" rel="noopener" class="cert-fallback-btn">
+              📄 Buka Dokumen PDF Penuh
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="custom-cursor" id="customCursor"></div>
+  <div class="custom-cursor-follower" id="cursorFollower"></div>
+
+  <!-- ===== COMMAND PALETTE (CTRL + K) ===== -->
+  <div id="cmdPaletteModal" class="cmd-modal" aria-hidden="true" role="dialog">
+    <div class="cmd-backdrop" id="cmdBackdrop"></div>
+    <div class="cmd-dialog glass-card">
+      <div class="cmd-search-bar">
+        <svg class="cmd-search-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        <input type="text" id="cmdInput" placeholder="Ketik perintah atau cari proyek, sertifikat, keahlian... (Esc untuk tutup)" autocomplete="off" />
+        <span class="cmd-badge-esc">ESC</span>
+      </div>
+      <div class="cmd-results" id="cmdResults"></div>
+      <div class="cmd-footer">
+        <div class="cmd-tips">
+          <span><kbd>↑</kbd><kbd>↓</kbd> Navigasi</span>
+          <span><kbd>↵</kbd> Buka</span>
+          <span><kbd>ESC</kbd> Tutup</span>
+        </div>
+        <span class="cmd-brand">⚡ Nassya Portfolio Hub</span>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js?v=19"></script>
+</body>
+
+</html>
+
+
+
+
+
+
